@@ -25,16 +25,16 @@ public class MainScreen implements Screen {
 
     private Game game;
     private Stage stage;
-    private SpriteBatch batch;
     private Texture playTexture;
     private Texture levelTexture;
 
 
     public MainScreen(Game aGame){
         game = aGame;
+        final Screen currentScreen = game.getScreen();
         stage = new Stage(new ScreenViewport());
 
-        Gdx.app.log("1:"," New Main Screen started");
+        Gdx.app.log("Mainscreen"," New Main Screen started");
 
         Label title = new Label("Labyrinth", MyGdxGame.gameSkin);
         title.setFontScale(4f);
@@ -49,6 +49,9 @@ public class MainScreen implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(new GameScreen(game));
+                if (currentScreen != null) {
+                    currentScreen.dispose();
+                }
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -64,6 +67,9 @@ public class MainScreen implements Screen {
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(new LevelScreen(game));
+                if (currentScreen != null) {
+                    currentScreen.dispose();
+                }
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -94,7 +100,6 @@ public class MainScreen implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
@@ -104,7 +109,8 @@ public class MainScreen implements Screen {
 
     @Override
     public void hide() {
-
+    Gdx.app.log("Mainscreen","screen is paused");
+    this.dispose();
     }
 
     @Override

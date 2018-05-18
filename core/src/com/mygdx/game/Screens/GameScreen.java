@@ -47,7 +47,6 @@ public class GameScreen implements Screen {
 
     public GameScreen(Game aGame){
         game = aGame;
-        modelBatch = new ModelBatch();
         setUpCam();
         setUpLevel();
         setUpHero();
@@ -63,6 +62,32 @@ public class GameScreen implements Screen {
     }
 
     @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        modelBatch.dispose();
+        model.dispose();
+    }
+
+    @Override
     public void render(float delta) {
         Gdx.gl.glViewport(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -73,20 +98,22 @@ public class GameScreen implements Screen {
         }
         if(loading) {
             if (assets.update()) {
-                Model hero = assets.get("ship.g3db",Model.class);
+                Model hero = assets.get("newpicka.g3db",Model.class);
                 heroInstance = new ModelInstance(hero,25f,-1.25f,-7.5f);
                 instances.add(heroInstance);
                 loading = false;
-                Gdx.app.log("","Started");
             }
         }
         modelBatch.end();
     }
+
     private void setUpHero(){
-    assets = new AssetManager();
-    assets.load("ship.g3db", Model.class);
+        modelBatch = new ModelBatch();
+        assets = new AssetManager();
+        assets.load("pikachu.g3db", Model.class);
 
     }
+
     private void setUpLevel(){
         Level level = new Level();
         currentLevel = level.getLevel(1);
@@ -130,7 +157,7 @@ public class GameScreen implements Screen {
         for (int i = 0; i < currentLevel.length ; i++) {
             for (int j = 0; j < currentLevel[0].length; j++) {
                 if(currentLevel[i][j]==1){
-                    Gdx.app.log(" ","Added new box");
+                    Gdx.app.log("Gamescreen","Added new box");
                     if (i<currentPosition[0]){
                         if (j<currentPosition[1]){
                             instances.add(new ModelInstance(model,5*(currentPosition[0]+i),-2.5f,-2.5f+5*(currentPosition[1]-j)));
@@ -165,29 +192,7 @@ public class GameScreen implements Screen {
             }
         }
     }
-    @Override
-    public void resize(int width, int height) {
 
-    }
 
-    @Override
-    public void pause() {
 
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        modelBatch.dispose();
-        model.dispose();
-    }
 }

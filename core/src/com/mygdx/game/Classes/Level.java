@@ -8,7 +8,7 @@ public class Level {
     public int [][] level1 = {{0,1,1,0,0},
                               {0,0,1,1,0},
                               {0,0,0,1,1}};
-    public int [] startPosition1 = {3,2};
+    public int [] startPosition1 = {4,2};
 
     public int[][] getLevel(int id){
       //  if(id==1) {
