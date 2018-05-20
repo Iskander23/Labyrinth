@@ -98,7 +98,7 @@ public class GameScreen implements Screen {
         }
         if(loading) {
             if (assets.update()) {
-                Model hero = assets.get("newpicka.g3db",Model.class);
+                Model hero = assets.get("Models/newpicka.g3db",Model.class);
                 heroInstance = new ModelInstance(hero,25f,-1.25f,-7.5f);
                 instances.add(heroInstance);
                 loading = false;
@@ -110,7 +110,7 @@ public class GameScreen implements Screen {
     private void setUpHero(){
         modelBatch = new ModelBatch();
         assets = new AssetManager();
-        assets.load("pikachu.g3db", Model.class);
+        assets.load("Models/pikachu.g3db", Model.class);
 
     }
 

@@ -27,11 +27,12 @@ public class MainScreen implements Screen {
     private Stage stage;
     private Texture playTexture;
     private Texture levelTexture;
+    private final Screen currentScreen;
 
 
     public MainScreen(Game aGame){
         game = aGame;
-        final Screen currentScreen = game.getScreen();
+        currentScreen = game.getScreen();
         stage = new Stage(new ScreenViewport());
 
         Gdx.app.log("Mainscreen"," New Main Screen started");
@@ -43,7 +44,7 @@ public class MainScreen implements Screen {
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 
-        playTexture = new Texture(Gdx.files.internal("play.png"));
+        playTexture = new Texture(Gdx.files.internal("Buttons/play.png"));
         ImageButton playButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(playTexture)),new TextureRegionDrawable(new TextureRegion(playTexture)));
         playButton.addListener(new InputListener(){
             @Override
@@ -61,7 +62,7 @@ public class MainScreen implements Screen {
         playButton.setPosition(Gdx.graphics.getWidth()/2 - Gdx.graphics.getWidth()/4,Gdx.graphics.getHeight()/4);
         stage.addActor(playButton);
 
-        levelTexture = new Texture(Gdx.files.internal("menu.png"));
+        levelTexture = new Texture(Gdx.files.internal("Buttons/menu.png"));
         ImageButton levelButton = new ImageButton(new TextureRegionDrawable(new TextureRegion(levelTexture)), new TextureRegionDrawable(new TextureRegion(levelTexture)));
         levelButton.addListener(new InputListener(){
             @Override
@@ -115,6 +116,6 @@ public class MainScreen implements Screen {
 
     @Override
     public void dispose() {
-    stage.dispose();
+//    stage.dispose();
     }
 }
